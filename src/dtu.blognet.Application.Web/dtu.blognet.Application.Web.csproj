@@ -13,5 +13,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
   </ItemGroup>
 
+  <Target Name="FrontEndDependencies" BeforeTargets="Build">
+    <Exec Command="bower install" />
+  </Target>
 
 </Project>

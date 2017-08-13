@@ -1,4 +1,5 @@
 # Blognet
+[![Build Status](https://travis-ci.org/atila29/blognet.svg?branch=master)](https://travis-ci.org/atila29/blognet)
 
 > A blog written in ASP.NET core.
 

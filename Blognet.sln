@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2CCA26B7-800
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dtu.blognet.Application.Web", "src\dtu.blognet.Application.Web\dtu.blognet.Application.Web.csproj", "{81E27DF4-39A6-4112-B7C2-DF89BC8738E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{356836D1-7D6A-4A30-8FC6-D8FF8428D644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dtu.blognet.Test.UnitTest", "test\dtu.blognet.Test.UnitTest\dtu.blognet.Test.UnitTest.csproj", "{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{81E27DF4-39A6-4112-B7C2-DF89BC8738E2}.Release|x64.Build.0 = Release|x64
 		{81E27DF4-39A6-4112-B7C2-DF89BC8738E2}.Release|x86.ActiveCfg = Release|x86
 		{81E27DF4-39A6-4112-B7C2-DF89BC8738E2}.Release|x86.Build.0 = Release|x86
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Debug|x64.ActiveCfg = Debug|x64
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Debug|x64.Build.0 = Debug|x64
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Debug|x86.ActiveCfg = Debug|x86
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Debug|x86.Build.0 = Debug|x86
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Release|x64.ActiveCfg = Release|x64
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Release|x64.Build.0 = Release|x64
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Release|x86.ActiveCfg = Release|x86
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{81E27DF4-39A6-4112-B7C2-DF89BC8738E2} = {2CCA26B7-800C-4352-903C-B0099F2F79A6}
+		{1C783FA9-B4F9-4A5A-B00D-EAEFB0491E5E} = {356836D1-7D6A-4A30-8FC6-D8FF8428D644}
 	EndGlobalSection
 EndGlobal

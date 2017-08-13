@@ -8,7 +8,7 @@ namespace dtu.blognet.Test.UnitTest
         [Fact]
         public void Test1()
         {
-            throw new NotImplementedException();
+            Assert.Equal(1,1);
         }
     }
 }

@@ -3,6 +3,9 @@ solution: Blognet.sln
 mono: none
 dotnet: 1.0.3
 dist: trusty
+before_script:
+  - npm install -g bower
+  - bower install
 script:
  - dotnet restore
  - dotnet build

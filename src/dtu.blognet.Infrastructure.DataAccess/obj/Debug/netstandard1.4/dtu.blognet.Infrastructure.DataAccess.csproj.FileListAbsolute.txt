@@ -1,0 +1,8 @@
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/bin/Debug/netstandard1.4/dtu.blognet.Infrastructure.DataAccess.deps.json
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/obj/Debug/netstandard1.4/dtu.blognet.Infrastructure.DataAccess.AssemblyInfo.cs
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/bin/Debug/netstandard1.4/dtu.blognet.Infrastructure.DataAccess.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/bin/Debug/netstandard1.4/dtu.blognet.Infrastructure.DataAccess.pdb
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/bin/Debug/netstandard1.4/dtu.blognet.Core.Entities.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/bin/Debug/netstandard1.4/dtu.blognet.Core.Entities.pdb
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/obj/Debug/netstandard1.4/dtu.blognet.Infrastructure.DataAccess.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Infrastructure.DataAccess/obj/Debug/netstandard1.4/dtu.blognet.Infrastructure.DataAccess.pdb

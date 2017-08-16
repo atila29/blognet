@@ -1,0 +1,12 @@
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.deps.json
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.runtimeconfig.json
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.runtimeconfig.dev.json
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.pdb
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Core.Entities.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Infrastructure.DataAccess.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Infrastructure.DataAccess.pdb
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/bin/Debug/netcoreapp1.1.2/dtu.blognet.Core.Entities.pdb
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/obj/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.AssemblyInfo.cs
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/obj/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Application.Web/obj/Debug/netcoreapp1.1.2/dtu.blognet.Application.Web.pdb

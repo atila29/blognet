@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using dtu.blognet.Infrastructure.DataAccess;
 
 namespace dtu.blognet.Application.Web
 {
@@ -29,10 +31,14 @@ namespace dtu.blognet.Application.Web
         {
             // Add framework services.
             services.AddMvc();
+            
+            // Add framework services.
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -55,6 +61,7 @@ namespace dtu.blognet.Application.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            context.Database.Migrate();
         }
     }
 }

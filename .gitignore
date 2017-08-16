@@ -1,6 +1,4 @@
 /.vscode/
-/src/dtu.blognet.Application.Web/bin/
-/src/dtu.blognet.Application.Web/obj/
+/**/bin/
+/**/obj/
 /src/dtu.blognet.Application.Web/wwwroot/lib/
-/test/dtu.blognet.Test.UnitTest/obj/
-/test/dtu.blognet.Test.UnitTest/bin

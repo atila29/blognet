@@ -1,0 +1,6 @@
+/home/atila29/dev/blognet/src/dtu.blognet.Core.Entities/bin/Debug/netstandard1.4/dtu.blognet.Core.Entities.deps.json
+/home/atila29/dev/blognet/src/dtu.blognet.Core.Entities/bin/Debug/netstandard1.4/dtu.blognet.Core.Entities.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Core.Entities/bin/Debug/netstandard1.4/dtu.blognet.Core.Entities.pdb
+/home/atila29/dev/blognet/src/dtu.blognet.Core.Entities/obj/Debug/netstandard1.4/dtu.blognet.Core.Entities.AssemblyInfo.cs
+/home/atila29/dev/blognet/src/dtu.blognet.Core.Entities/obj/Debug/netstandard1.4/dtu.blognet.Core.Entities.dll
+/home/atila29/dev/blognet/src/dtu.blognet.Core.Entities/obj/Debug/netstandard1.4/dtu.blognet.Core.Entities.pdb

@@ -1,0 +1,11 @@
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/xunit.runner.utility.netstandard15.dll
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/xunit.runner.reporters.netstandard15.dll
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.deps.json
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.runtimeconfig.json
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.runtimeconfig.dev.json
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.dll
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/bin/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.pdb
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/obj/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.AssemblyInfo.cs
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/obj/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.dll
+/home/atila29/dev/blognet/test/dtu.blognet.Test.UnitTest/obj/Debug/netcoreapp1.1/dtu.blognet.Test.UnitTest.pdb

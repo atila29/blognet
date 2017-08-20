@@ -31,7 +31,6 @@ namespace dtu.blognet.Application.Web
         {
             // Add framework services.
             services.AddMvc();
-            
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));

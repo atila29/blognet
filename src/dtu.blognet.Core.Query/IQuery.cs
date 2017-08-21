@@ -2,8 +2,8 @@
 
 namespace dtu.blognet.Core.Query
 {
-  public interface IQuery<out TResponse>
-  {
-      
-  }
+    public interface IQuery<out TResponse>
+    {
+        
+    }
 }

@@ -5,6 +5,6 @@ namespace dtu.blognet.Core.Query.Queries
 {
   public class AllblogsQuery : IQuery<IEnumerable<Blog>>
   {
-    
+      
   }
 }

@@ -11,11 +11,11 @@ namespace dtu.blognet.Core.Query
   
         public QueryDb(ApplicationDbContext dbContext)
         {
-          _dbContext = dbContext;
-          _dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            _dbContext = dbContext;
+            _dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-      public IQueryable<Blog> Blogs => _dbContext.Blogs.AsQueryable();
+        public IQueryable<Blog> Blogs => _dbContext.Blogs.AsQueryable();
 
     }
 }

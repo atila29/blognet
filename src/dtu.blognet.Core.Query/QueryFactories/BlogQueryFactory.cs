@@ -14,7 +14,7 @@ namespace dtu.blognet.Core.Query.QueryFactories
         private readonly QueryDb _queryDb;
         public BlogQueryFactory(QueryDb queryDb)
         {
-          _queryDb = queryDb;
+            _queryDb = queryDb;
         }
       
       

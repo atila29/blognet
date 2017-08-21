@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dtu.blognet.Core.Query;
+using dtu.blognet.Core.Query.QueryFactories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,9 @@ namespace dtu.blognet.Application.Web
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
+
+            services.AddTransient<QueryDb, QueryDb>();
+            services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

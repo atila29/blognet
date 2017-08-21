@@ -6,7 +6,6 @@ namespace dtu.blognet.Core.Command.Commands.BlogCommands
     {
         public BlogInputModel Model { get; set; }
         
-        
     }
 }
 

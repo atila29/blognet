@@ -1,7 +1,7 @@
 ﻿namespace dtu.blognet.Core.Command
 {
-  public interface ICommandHandler<in TCommand, out TResult> where TCommand : ICommand<TResult>
-  {
-    TResult Execute();
-  }
+    public interface ICommandHandler<in TCommand, out TResult> where TCommand : ICommand<TResult>
+    {
+        TResult Execute();
+    }
 }

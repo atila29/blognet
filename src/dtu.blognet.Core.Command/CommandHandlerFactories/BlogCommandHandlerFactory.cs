@@ -4,11 +4,11 @@ using dtu.blognet.Infrastructure.DataAccess;
 
 namespace dtu.blognet.Core.Command.CommandHandlerFactories
 {
-    public class BlogCommandHandleFactory
+    public class BlogCommandHandlerFactory
     {
       private readonly ApplicationDbContext _context;
 
-      public BlogCommandHandleFactory(ApplicationDbContext context)
+      public BlogCommandHandlerFactory(ApplicationDbContext context)
       {
         _context = context;
       }

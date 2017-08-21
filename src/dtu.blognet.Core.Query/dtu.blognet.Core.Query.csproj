@@ -1,7 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\dtu.blognet.Core.Entities\dtu.blognet.Core.Entities.csproj">
+      <Project>{B3C67BC8-A0F9-49D3-B884-3BC4A432037F}</Project>
+      <Name>dtu.blognet.Core.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dtu.blognet.Infrastructure.DataAccess\dtu.blognet.Infrastructure.DataAccess.csproj">
+      <Project>{4478DB35-4435-4A6A-8EA6-C48D232E8237}</Project>
+      <Name>dtu.blognet.Infrastructure.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

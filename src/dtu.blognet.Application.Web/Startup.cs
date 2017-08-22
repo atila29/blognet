@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dtu.blognet.Core.Query;
+using dtu.blognet.Core.Query.QueryFactories;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Entities;
 using Microsoft.AspNetCore.Builder;
@@ -36,6 +38,9 @@ namespace dtu.blognet.Application.Web
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
+
+            services.AddTransient<QueryDb, QueryDb>();
+            services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
 
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();
         }

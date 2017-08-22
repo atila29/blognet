@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query.Queries;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Extensions.Internal;
 
 namespace dtu.blognet.Core.Query.QueryHandlers
 {
@@ -27,6 +30,11 @@ namespace dtu.blognet.Core.Query.QueryHandlers
         public IEnumerable<Blog> Get()
         {
             return _queryDb.Blogs;
+        }
+
+        public async Task<IEnumerable<Blog>> GetAsync()
+        {
+            return await _queryDb.Blogs.ToListAsync();
         }
     }
 }

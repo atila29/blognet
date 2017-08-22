@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;

@@ -5,23 +5,23 @@ using dtu.blognet.Core.Query.Queries;
 namespace dtu.blognet.Core.Query.QueryHandlers
 {
     /// <summary>
-    /// QueryHandler for all blogs.
+    ///     QueryHandler for all blogs.
     /// </summary>
     public class AllBlogsQueryHandler : IQueryHandler<AllblogsQuery, IEnumerable<Blog>>
     {
         private readonly QueryDb _queryDb;
-        
+
         /// <summary>
-        /// Constructor.
+        ///     Constructor.
         /// </summary>
         /// <param name="queryDb">Instance of QueryDb</param>
         public AllBlogsQueryHandler(QueryDb queryDb)
         {
             _queryDb = queryDb;
         }
-        
+
         /// <summary>
-        /// The inherited method.
+        ///     The inherited method.
         /// </summary>
         /// <returns>All blogs</returns>
         public IEnumerable<Blog> Get()

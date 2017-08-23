@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 namespace dtu.blognet.Core.Query
 {
     /// <summary>
-    /// Class used as a layer for quering DB without tracking.
+    ///     Class used as a layer for quering DB without tracking.
     /// </summary>
     public class QueryDb
     {
         private readonly ApplicationDbContext _dbContext;
-  
+
         /// <summary>
-        /// Constructor for QueryDb
+        ///     Constructor for QueryDb
         /// </summary>
         /// <param name="dbContext"></param>
         public QueryDb(ApplicationDbContext dbContext)
@@ -23,6 +23,5 @@ namespace dtu.blognet.Core.Query
         }
 
         public IQueryable<Blog> Blogs => _dbContext.Blogs.AsQueryable();
-
     }
 }

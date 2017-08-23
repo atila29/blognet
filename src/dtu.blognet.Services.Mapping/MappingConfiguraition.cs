@@ -7,6 +7,11 @@ namespace dtu.blognet.Services.Mapping
 {
     public static class MappingConfiguraition
     {
+        /// <summary>
+        /// Create mappings based on the Services.Mapping assembly profiles.
+        /// </summary>
+        /// <returns>Configuration from the assembly</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static MapperConfiguration GetMappingConfig()
         {
             var assembly = Assembly.Load(new AssemblyName("dtu.blognet.Services.Mapping"));

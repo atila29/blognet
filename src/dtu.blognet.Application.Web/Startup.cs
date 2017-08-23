@@ -43,7 +43,7 @@ namespace dtu.blognet.Application.Web
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
             
             // Add automapper.
-            services.AddSingleton<IMapper>(MappingConfiguraition.GetMappingConfig().CreateMapper());
+            services.AddTransient<IMapper>(provider => MappingConfiguraition.GetMappingConfig().CreateMapper());
             
             // Add mappings.
             services.AddTransient<IMappingInterface<BlogInputModel, Blog>, BlogInputModel2Blog>();

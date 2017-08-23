@@ -1,7 +1,14 @@
-﻿using dtu.blognet.Core.Command.CommandHandlerFactories;
+﻿using System.Reflection;
+using AutoMapper;
+using dtu.blognet.Core.Command.CommandHandlerFactories;
+using dtu.blognet.Core.Command.InputModels.BlogInputModels;
+using dtu.blognet.Core.Command.MappingInterfaces;
+using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
 using dtu.blognet.Infrastructure.DataAccess;
+using dtu.blognet.Services.Mapping;
+using dtu.blognet.Services.Mapping.Mappings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +41,12 @@ namespace dtu.blognet.Application.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
+            
+            // Add automapper.
+            services.AddSingleton<IMapper>(MappingConfiguraition.GetMappingConfig().CreateMapper());
+            
+            // Add mappings.
+            services.AddTransient<IMappingInterface<BlogInputModel, Blog>, BlogInputModel2Blog>();
 
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();

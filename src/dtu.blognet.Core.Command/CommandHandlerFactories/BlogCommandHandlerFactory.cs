@@ -9,19 +9,19 @@ namespace dtu.blognet.Core.Command.CommandHandlerFactories
 {
     public class BlogCommandHandlerFactory
     {
+        private readonly IMappingInterface<BlogInputModel, Blog> _blogInputModel2Blog;
         private readonly ApplicationDbContext _context;
-      private readonly IMappingInterface<BlogInputModel, Blog> _blogInputModel2Blog;
 
-      public BlogCommandHandlerFactory(ApplicationDbContext context, IMappingInterface<BlogInputModel, Blog> blogInputModel2Blog)
-      {
-        _context = context;
-        _blogInputModel2Blog = blogInputModel2Blog;
-      }
-  
+        public BlogCommandHandlerFactory(ApplicationDbContext context,
+            IMappingInterface<BlogInputModel, Blog> blogInputModel2Blog)
+        {
+            _context = context;
+            _blogInputModel2Blog = blogInputModel2Blog;
+        }
+
         public ICommandHandler<AddBlogCommand, CommandResponse> Build(AddBlogCommand command)
         {
             return new AddBlogCommandHandler(_context, _blogInputModel2Blog, command);
         }
-        
     }
 }

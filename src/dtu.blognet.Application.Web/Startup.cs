@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
-using dtu.blognet.Core.Command.CommandHandlerFactories;
-using dtu.blognet.Core.Entities;
+using dtu.blognet.Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using dtu.blognet.Infrastructure.DataAccess;
 
 namespace dtu.blognet.Application.Web
 {
@@ -22,8 +17,8 @@ namespace dtu.blognet.Application.Web
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -37,7 +32,8 @@ namespace dtu.blognet.Application.Web
             services.AddMvc();
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
 
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
@@ -46,7 +42,8 @@ namespace dtu.blognet.Application.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            ApplicationDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -66,8 +63,8 @@ namespace dtu.blognet.Application.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
             });
             context.Database.Migrate();
         }

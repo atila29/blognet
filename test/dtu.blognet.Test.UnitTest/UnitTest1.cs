@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace dtu.blognet.Test.UnitTest
@@ -8,7 +7,7 @@ namespace dtu.blognet.Test.UnitTest
         [Fact]
         public void Test1()
         {
-            Assert.Equal(1,1);
+            Assert.Equal(1, 1);
         }
     }
 }

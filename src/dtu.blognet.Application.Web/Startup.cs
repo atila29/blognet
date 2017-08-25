@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
 using dtu.blognet.Infrastructure.DataAccess;

@@ -28,7 +28,7 @@ namespace dtu.blognet.Application.Web.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<IActionResult> DeleteBlog([FromServices] BlogCommandHandlerFactory blogCommandHandlerFactory, int id)
         {
             var command = new DeleteBlogAsyncCommand { Id = id };

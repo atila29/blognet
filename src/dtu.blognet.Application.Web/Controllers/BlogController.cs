@@ -33,7 +33,7 @@ namespace dtu.blognet.Application.Web.Controllers
         {
             var query = new AllBlogsQueryAsync();
             var blogs = await blogFactory.Build(query).Get().ToList();
-            return View();
+            return View(blogs);
         }
         
     }

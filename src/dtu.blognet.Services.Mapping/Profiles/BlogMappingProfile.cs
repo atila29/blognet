@@ -4,9 +4,9 @@ using dtu.blognet.Core.Entities;
 
 namespace dtu.blognet.Services.Mapping.Profiles
 {
-    public class BlogInputModel2BlogProfile : Profile
+    public class BlogMappingProfile : Profile
     {
-        public BlogInputModel2BlogProfile()
+        public BlogMappingProfile()
         {
             CreateMap<BlogInputModel, Blog>();
         }

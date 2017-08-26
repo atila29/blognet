@@ -3,3 +3,6 @@
 /**/obj/
 /src/dtu.blognet.Application.Web/wwwroot/lib/
 /.idea/
+/.vs/Blognet/v15/.suo
+/src/dtu.blognet.Application.Web/Properties/launchSettings.json
+/src/dtu.blognet.Application.Web/dtu.blognet.Application.Web.csproj.user

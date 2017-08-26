@@ -28,6 +28,15 @@ namespace dtu.blognet.Application.Web.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteBlog([FromServices] BlogCommandHandlerFactory blogCommandHandlerFactory, int id)
+        {
+            var command = new DeleteBlogAsyncCommand { Id = id };
+            var handler = blogCommandHandlerFactory.Build(command);
+            var response = await handler.Execute();
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> Index([FromServices] BlogQueryFactory blogFactory)
         {

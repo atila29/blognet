@@ -22,5 +22,10 @@ namespace dtu.blognet.Core.Command.CommandHandlerFactories
         {
             return new AddBlogAsyncCommandHandler(_context, _mapper, command);
         }
+
+        public ICommandHandler<DeleteBlogAsyncCommand, Task<CommandResponse>> Build(DeleteBlogAsyncCommand command)
+        {
+            return new DeleteBlogAsyncCommandHandler(_context, _mapper, command);
+        }
     }
 }

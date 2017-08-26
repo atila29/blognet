@@ -3,23 +3,24 @@ using AutoMapper;
 using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Infrastructure.DataAccess;
+using System.Threading.Tasks;
 
 namespace dtu.blognet.Core.Command.CommandHandlers.BlogCommandHandlers
 {
-    public class AddBlogCommandHandler : BaseCommandHandler, ICommandHandler<AddBlogCommand, CommandResponse>
+    public class AddBlogAsyncCommandHandler : BaseCommandHandler, ICommandHandler<AddBlogAsyncCommand, Task<CommandResponse>>
     {
         private readonly IMapper _mapper;
-        private readonly AddBlogCommand _command;
+        private readonly AddBlogAsyncCommand _command;
 
-        public AddBlogCommandHandler(ApplicationDbContext dbContext,
-            IMapper mapper, AddBlogCommand command) : base(dbContext)
+        public AddBlogAsyncCommandHandler(ApplicationDbContext dbContext,
+            IMapper mapper, AddBlogAsyncCommand command) : base(dbContext)
         {
           _mapper = mapper;
           _command = command;
         }
 
 
-        public CommandResponse Execute()
+        public async Task<CommandResponse> Execute()
         {
             var response = new CommandResponse
             {
@@ -31,14 +32,14 @@ namespace dtu.blognet.Core.Command.CommandHandlers.BlogCommandHandlers
                 try
                 {
                     var blog = _mapper.Map<Blog>(_command.Model);
-                    _dbContext.Blogs.Add(blog);
-                    _dbContext.SaveChanges();
+                    await _dbContext.Blogs.AddAsync(blog);
+                    await _dbContext.SaveChangesAsync();
                     transaction.Commit();
                     response.Success = true;
                 }
                 catch (Exception e)
                 {
-                    // LOG!!!
+                    //TODO: ADD LOG!!!
                     Console.WriteLine(e);
                     transaction.Rollback();
                 }

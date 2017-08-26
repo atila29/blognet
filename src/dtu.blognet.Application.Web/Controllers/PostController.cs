@@ -13,6 +13,7 @@ namespace dtu.blognet.Application.Web.Controllers
             
         }
 
+        [HttpPost]
         public async Task<IActionResult> CreatePost([FromServices] PostCommandHandlerFactory postCommandHandlerFactory, PostInputModel model)
         {
             var command = new AddPostAsyncCommand {Model = model};

@@ -22,9 +22,9 @@ namespace dtu.blognet.Application.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBlog([FromServices] BlogCommandHandlerFactory blogCommandHandlerFactory, BlogInputModel model)
         {
-            var command = new AddBlogCommand {Model = model};
+            var command = new AddBlogAsyncCommand {Model = model};
             var handler = blogCommandHandlerFactory.Build(command);
-            var response = handler.Execute();
+            var response = await handler.Execute();
             return Ok();
         }
 

@@ -2,6 +2,7 @@
 using dtu.blognet.Core.Command.CommandHandlers.BlogCommandHandlers;
 using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Infrastructure.DataAccess;
+using System.Threading.Tasks;
 
 namespace dtu.blognet.Core.Command.CommandHandlerFactories
 {
@@ -17,9 +18,9 @@ namespace dtu.blognet.Core.Command.CommandHandlerFactories
             _mapper = mapper;
         }
 
-        public ICommandHandler<AddBlogCommand, CommandResponse> Build(AddBlogCommand command)
+        public ICommandHandler<AddBlogAsyncCommand, Task<CommandResponse>> Build(AddBlogAsyncCommand command)
         {
-            return new AddBlogCommandHandler(_context, _mapper, command);
+            return new AddBlogAsyncCommandHandler(_context, _mapper, command);
         }
     }
 }

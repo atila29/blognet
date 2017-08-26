@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
@@ -12,17 +13,13 @@ namespace dtu.blognet.Services.Mapping
         /// </summary>
         /// <returns>Configuration from the assembly</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static MapperConfiguration GetMappingConfig()
+        public static IEnumerable<Type> GetMappingTypes()
         {
             var assembly = Assembly.Load(new AssemblyName("dtu.blognet.Services.Mapping"));
             if (assembly == null) throw new ArgumentNullException(nameof(assembly));
             var profiles = assembly.ExportedTypes.Where(t => typeof(Profile).GetTypeInfo().IsAssignableFrom(t.GetTypeInfo()))
                 .Where(t => !t.GetTypeInfo().IsAbstract);
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfiles(profiles);
-            });
-            return config;
+            return profiles;
         }
     }
 }

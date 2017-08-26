@@ -38,7 +38,11 @@ namespace dtu.blognet.Application.Web
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
             
             // Add automapper.
-            services.AddTransient<IMapper>(provider => MappingConfiguraition.GetMappingConfig().CreateMapper());
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfiles(MappingConfiguraition.GetMappingTypes());
+            });
+            services.AddSingleton<IMapper>(mapperConfig.CreateMapper());
 
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();

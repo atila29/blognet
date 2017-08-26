@@ -51,6 +51,22 @@ namespace dtu.blognet.Application.Web.Controllers
             });
         }
         
+        public async Task<IActionResult> SignIn([FromBody] Credentials Credentials)
+        {
+            if (!ModelState.IsValid) return Error("Unexpected error");
+            
+            var result = await _signInManager.PasswordSignInAsync(Credentials.Email, Credentials.Password, false, false);
+            
+            if (!result.Succeeded) return new JsonResult("Unable to sign in") {StatusCode = 401};
+            
+            var user = await _userManager.FindByEmailAsync(Credentials.Email);
+            return new JsonResult(  new Dictionary<string, object>
+            {
+                { "access_token", GetAccessToken(Credentials.Email) },
+                { "id_token", GetIdToken(user) }
+            });
+        }
+        
         
         private string GetIdToken(IdentityUser user) {
             var payload = new Dictionary<string, object>

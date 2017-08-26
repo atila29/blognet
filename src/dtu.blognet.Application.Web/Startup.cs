@@ -6,6 +6,7 @@ using dtu.blognet.Infrastructure.DataAccess;
 using dtu.blognet.Services.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,9 @@ namespace dtu.blognet.Application.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
             
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
             // Add automapper.
             var mapperConfig = new MapperConfiguration(cfg =>
             {
@@ -44,9 +48,11 @@ namespace dtu.blognet.Application.Web
             });
             services.AddSingleton<IMapper>(mapperConfig.CreateMapper());
 
+            // Queries
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
 
+            // Factories
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();
         }
 
@@ -69,6 +75,8 @@ namespace dtu.blognet.Application.Web
 
             app.UseStaticFiles();
 
+            app.UseIdentity();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -6,4 +6,7 @@
     <ProjectReference Include="..\dtu.blognet.Core.Entities\dtu.blognet.Core.Entities.csproj" />
     <ProjectReference Include="..\dtu.blognet.Infrastructure.DataAccess\dtu.blognet.Infrastructure.DataAccess.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+  </ItemGroup>
 </Project>

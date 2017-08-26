@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using dtu.blognet.Core.Entities;
-using dtu.blognet.Core.Query.Queries;
+using dtu.blognet.Core.Query.Queries.Blogs;
 
-namespace dtu.blognet.Core.Query.QueryHandlers
+namespace dtu.blognet.Core.Query.QueryHandlers.Blog
 {
     /// <summary>
     ///     QueryHandler for all blogs.
     /// </summary>
-    public class AllBlogsQueryHandler : IQueryHandler<AllblogsQuery, IEnumerable<Blog>>
+    public class AllBlogsQueryHandler : IQueryHandler<AllblogsQuery, IEnumerable<Entities.Blog>>
     {
         private readonly QueryDb _queryDb;
 
@@ -24,7 +23,7 @@ namespace dtu.blognet.Core.Query.QueryHandlers
         ///     The inherited method.
         /// </summary>
         /// <returns>All blogs</returns>
-        public IEnumerable<Blog> Get()
+        public IEnumerable<Entities.Blog> Get()
         {
             return _queryDb.Blogs;
         }

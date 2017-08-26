@@ -6,6 +6,7 @@ using dtu.blognet.Core.Command.MappingInterfaces;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
+using dtu.blognet.Core.Query.QueryFactories.Blog;
 using dtu.blognet.Infrastructure.DataAccess;
 using dtu.blognet.Services.Mapping;
 using dtu.blognet.Services.Mapping.Mappings;

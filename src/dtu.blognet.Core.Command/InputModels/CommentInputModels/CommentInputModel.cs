@@ -4,7 +4,7 @@ using System.Text;
 
 namespace dtu.blognet.Core.Command.InputModels.CommentInputModels
 {
-    class CommentInputModel
+    public class CommentInputModel
     {
         //TODO: Add owner
         public int PostId { get; set; }

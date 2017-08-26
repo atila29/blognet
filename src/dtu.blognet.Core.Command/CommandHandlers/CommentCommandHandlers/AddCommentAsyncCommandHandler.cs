@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace dtu.blognet.Core.Command.CommandHandlers.CommentCommandHandlers
 {
-    class AddCommentAsyncCommandHandler : BaseCommandHandler, ICommandHandler<AddCommentAsyncCommand, Task<CommandResponse>>
+    public class AddCommentAsyncCommandHandler : BaseCommandHandler, ICommandHandler<AddCommentAsyncCommand, Task<CommandResponse>>
     {
         private readonly AddCommentAsyncCommand _command;
         private readonly IMapper _mapper;

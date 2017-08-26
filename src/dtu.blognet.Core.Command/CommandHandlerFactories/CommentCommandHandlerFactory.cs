@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace dtu.blognet.Core.Command.CommandHandlerFactories
 {
-    class CommentCommandHandlerFactory
+    public class CommentCommandHandlerFactory
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;

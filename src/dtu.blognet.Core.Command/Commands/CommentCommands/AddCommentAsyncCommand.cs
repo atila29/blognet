@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dtu.blognet.Core.Command.Commands.CommentCommands
 {
-    class AddCommentAsyncCommand : ICommand<Task<CommandResponse>>
+    public class AddCommentAsyncCommand : ICommand<Task<CommandResponse>>
     {
         public CommentInputModel Model { get; set; }
     }

@@ -45,6 +45,7 @@ namespace dtu.blognet.Application.Web
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
 
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();
+            services.AddTransient<PostCommandHandlerFactory, PostCommandHandlerFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

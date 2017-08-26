@@ -2,6 +2,7 @@
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
+using dtu.blognet.Core.Query.QueryFactories.Blog;
 using dtu.blognet.Infrastructure.DataAccess;
 using dtu.blognet.Services.Mapping;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +45,8 @@ namespace dtu.blognet.Application.Web
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
 
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();
+            services.AddTransient<PostCommandHandlerFactory, PostCommandHandlerFactory>();
+            services.AddTransient<CommentCommandHandlerFactory, CommentCommandHandlerFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

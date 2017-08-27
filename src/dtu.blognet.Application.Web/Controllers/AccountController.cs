@@ -27,14 +27,27 @@ namespace dtu.blognet.Application.Web.Controllers
             IOptions<JwtConfiguration> options, 
             UserManager<IdentityUser> userManager, 
             SignInManager<IdentityUser> signInManager, 
-            JwtConfiguration config)
+            IOptions<JwtConfiguration> config)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _config = config;
+            _config = config.Value;
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
         }
         
-        public async Task<IActionResult> Register([FromBody] Credentials credentials)
+        [HttpPost]
+        public async Task<IActionResult> Register(Credentials credentials)
         {
             if (!ModelState.IsValid) return Error("Unexpected error");
             
@@ -51,18 +64,19 @@ namespace dtu.blognet.Application.Web.Controllers
             });
         }
         
-        public async Task<IActionResult> SignIn([FromBody] Credentials Credentials)
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] Credentials credentials)
         {
             if (!ModelState.IsValid) return Error("Unexpected error");
             
-            var result = await _signInManager.PasswordSignInAsync(Credentials.Email, Credentials.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
             
             if (!result.Succeeded) return new JsonResult("Unable to sign in") {StatusCode = 401};
             
-            var user = await _userManager.FindByEmailAsync(Credentials.Email);
+            var user = await _userManager.FindByEmailAsync(credentials.Email);
             return new JsonResult(  new Dictionary<string, object>
             {
-                { "access_token", GetAccessToken(Credentials.Email) },
+                { "access_token", GetAccessToken(credentials.Email) },
                 { "id_token", GetIdToken(user) }
             });
         }

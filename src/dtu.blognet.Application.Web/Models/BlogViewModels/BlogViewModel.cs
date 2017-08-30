@@ -3,5 +3,6 @@
     public class BlogViewModel
     {
         public string Title { get; set; }
+        public int Id { get; set; }
     }
 }

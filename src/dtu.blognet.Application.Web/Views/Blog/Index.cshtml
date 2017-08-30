@@ -4,5 +4,5 @@
 }
 @foreach (var blog in Model.Blogs)
 {
-    <h3>@blog.Title</h3>
+    <h3><a asp-action="View" asp-route-id="@blog.Id">@blog.Title</a></h3>
 }

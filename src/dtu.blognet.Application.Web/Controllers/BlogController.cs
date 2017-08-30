@@ -55,6 +55,15 @@ namespace dtu.blognet.Application.Web.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult View([FromServices] BlogQueryFactory blogQueryFactory, BlogFromIdQuery query)
+        {
+            var blog = blogQueryFactory.Build(query).Get();
+            var viewModel = _mapper.Map<BlogViewModel>(blog);
+            return View(viewModel);
+        }
+        
         
     }
 }

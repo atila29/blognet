@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blogs;
+using dtu.blognet.Core.Query.Queries.Blog;
 using Microsoft.EntityFrameworkCore.Extensions.Internal;
 
 namespace dtu.blognet.Core.Query.QueryHandlers.Blog

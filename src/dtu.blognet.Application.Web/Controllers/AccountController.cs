@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using dtu.blognet.Application.Web.ConfigurationObjects;
 using dtu.blognet.Application.Web.Models.AccountViewModels;
 using dtu.blognet.Core.Entities;
+using dtu.blognet.Core.Query.Queries.Account;
+using dtu.blognet.Core.Query.QueryFactories;
 using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
@@ -22,16 +27,19 @@ namespace dtu.blognet.Application.Web.Controllers
     {
         private readonly UserManager<Account> _userManager;
         private readonly SignInManager<Account> _signInManager;
+        private readonly IMapper _mapper;
         private readonly JwtConfiguration _config;
         
         public AccountController(
             IOptions<JwtConfiguration> options, 
             UserManager<Account> userManager, 
             SignInManager<Account> signInManager, 
-            IOptions<JwtConfiguration> config)
+            IOptions<JwtConfiguration> config,
+            IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _mapper = mapper;
             _config = config.Value;
         }
 
@@ -45,6 +53,17 @@ namespace dtu.blognet.Application.Web.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Profile([FromServices] AccountQueryFactory accountQueryFactory)
+        {
+            var userId = _userManager.GetUserId(User);
+            var query = new AccountFromIdQuery{Id = userId};
+            var user = accountQueryFactory.Build(query).Get();
+            var viewModel = _mapper.Map<AccountViewModel>(user);
+            return View(viewModel);
         }
         
         [HttpPost]

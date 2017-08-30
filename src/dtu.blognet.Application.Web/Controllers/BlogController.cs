@@ -6,10 +6,10 @@ using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Command.InputModels.BlogInputModels;
 using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blogs;
+using dtu.blognet.Core.Query.Queries.Blog;
 using dtu.blognet.Core.Query.QueryFactories;
-using dtu.blognet.Core.Query.QueryFactories.Blog;
 using dtu.blognet.Infrastructure.DataAccess.Migrations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dtu.blognet.Application.Web.Controllers
@@ -50,6 +50,7 @@ namespace dtu.blognet.Application.Web.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult CreateBlog()
         {

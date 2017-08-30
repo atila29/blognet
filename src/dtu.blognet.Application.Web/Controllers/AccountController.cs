@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using dtu.blognet.Application.Web.ConfigurationObjects;
 using dtu.blognet.Application.Web.Models.AccountViewModels;
+using dtu.blognet.Core.Entities;
 using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
@@ -19,14 +20,14 @@ namespace dtu.blognet.Application.Web.Controllers
     /// </summary>
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Account> _userManager;
+        private readonly SignInManager<Account> _signInManager;
         private readonly JwtConfiguration _config;
         
         public AccountController(
             IOptions<JwtConfiguration> options, 
-            UserManager<IdentityUser> userManager, 
-            SignInManager<IdentityUser> signInManager, 
+            UserManager<Account> userManager, 
+            SignInManager<Account> signInManager, 
             IOptions<JwtConfiguration> config)
         {
             _userManager = userManager;
@@ -51,7 +52,7 @@ namespace dtu.blognet.Application.Web.Controllers
         {
             if (!ModelState.IsValid) return Error("Unexpected error");
             
-            var user = new IdentityUser { UserName = credentials.Email, Email = credentials.Email };
+            var user = new Account { UserName = credentials.Email, Email = credentials.Email };
             var result = await _userManager.CreateAsync(user, credentials.Password);
             
             if (!result.Succeeded) return Errors(result);

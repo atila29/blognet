@@ -1,0 +1,19 @@
+﻿@model dtu.blognet.Application.Web.Models.PostViewModels.PostViewModel
+@{
+    ViewData["Title"] = "Create Post";
+}
+<label asp-for="Title"></label>
+<input asp-for="Title"/>
+<textarea asp-for="Content" id="markdown-editor">
+</textarea> 
+
+
+
+<input asp-for="BlogId" hidden="true"/>
+
+@section Scripts
+{
+    <script>
+        var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
+    </script>
+}

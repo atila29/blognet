@@ -4,6 +4,7 @@ using dtu.blognet.Application.Web.ConfigurationObjects;
 using dtu.blognet.Application.Web.Services;
 using dtu.blognet.Application.Web.Services.AutomapperProfiles;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
+using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
 using dtu.blognet.Core.Query.QueryFactories.Blog;
@@ -46,7 +47,7 @@ namespace dtu.blognet.Application.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
             
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<Account, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
             // Add JWT configuration object.

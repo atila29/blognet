@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace dtu.blognet.Core.Entities
 {
     public class Account : IdentityUser
     {
+        public virtual ICollection<Blog> OwnedBlogs { get; set; }
     }
 }

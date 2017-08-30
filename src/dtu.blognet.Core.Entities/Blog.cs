@@ -9,5 +9,7 @@ namespace dtu.blognet.Core.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         public virtual ICollection<BlogTag> Tags { get; set; }
+        public string OwnerId { get; set; }
+        public virtual Account Owner { get; set; }
     }
 }

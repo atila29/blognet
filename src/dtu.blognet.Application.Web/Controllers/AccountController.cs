@@ -65,7 +65,7 @@ namespace dtu.blognet.Application.Web.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] Credentials credentials)
+        public async Task<IActionResult> Login(Credentials credentials)
         {
             if (!ModelState.IsValid) return Error("Unexpected error");
             

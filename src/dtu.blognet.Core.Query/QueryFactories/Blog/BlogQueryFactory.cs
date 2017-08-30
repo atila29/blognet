@@ -33,5 +33,10 @@ namespace dtu.blognet.Core.Query.QueryFactories.Blog
         {
             return new AllBlogsQueryAsyncHandler(_queryDb);
         }
+
+        public IQueryHandler<BlogFromIdQuery, Entities.Blog> Build(BlogFromIdQuery query)
+        {
+            return new BlogFromIdQueryHandler(_queryDb, query);
+        }
     }
 }

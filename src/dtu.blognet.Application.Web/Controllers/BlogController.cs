@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using dtu.blognet.Application.Web.Models.BlogViewModels;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Command.InputModels.BlogInputModels;
@@ -14,9 +16,11 @@ namespace dtu.blognet.Application.Web.Controllers
 {
     public class BlogController : Controller
     {
-        public BlogController()
+        private readonly IMapper _mapper;
+
+        public BlogController(IMapper mapper)
         {
-            
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -33,6 +37,13 @@ namespace dtu.blognet.Application.Web.Controllers
         {
             var query = new AllBlogsQueryAsync();
             var blogs = await blogFactory.Build(query).Get().ToList();
+            var viewModel = _mapper.Map<BlogIndexViewModel>(blogs);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult CreateBlog()
+        {
             return View();
         }
         

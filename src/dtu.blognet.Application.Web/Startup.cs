@@ -2,6 +2,7 @@
 using AutoMapper;
 using dtu.blognet.Application.Web.ConfigurationObjects;
 using dtu.blognet.Application.Web.Services;
+using dtu.blognet.Application.Web.Services.AutomapperProfiles;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
@@ -55,6 +56,7 @@ namespace dtu.blognet.Application.Web
             var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfiles(MappingConfiguraition.GetMappingTypes());
+                cfg.AddProfile(new ViewModelProfile());
             });
             services.AddSingleton<IMapper>(mapperConfig.CreateMapper());
 

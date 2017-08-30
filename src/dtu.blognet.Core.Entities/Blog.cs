@@ -9,7 +9,5 @@ namespace dtu.blognet.Core.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         public virtual ICollection<BlogTag> Tags { get; set; }
-        // TODO: add owner account.
-        // TODO: add subscribers 
     }
 }

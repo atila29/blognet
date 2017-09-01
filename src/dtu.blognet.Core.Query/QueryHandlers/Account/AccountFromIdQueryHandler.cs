@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using dtu.blognet.Core.Query.Queries.Account;
+using Microsoft.EntityFrameworkCore;
 
 namespace dtu.blognet.Core.Query.QueryHandlers.Account
 {
@@ -16,7 +17,7 @@ namespace dtu.blognet.Core.Query.QueryHandlers.Account
         
         public Entities.Account Get()
         {
-            return _queryDb.Users.Single(account => account.Id == _query.Id);
+            return _queryDb.Users.Include(account => account.OwnedBlogs).Single(account => account.Id == _query.Id);
         }
     }
 }

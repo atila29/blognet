@@ -4,13 +4,12 @@
 }
 <label asp-for="Title"></label>
 <br />
-<input asp-for="Title"/>
-<textarea asp-for="Content" id="markdown-editor">
-</textarea> 
-
-
-
-<input asp-for="BlogId" hidden="true"/>
+<form asp-action="Create">
+    <input asp-for="Title"/>
+    <textarea asp-for="Content" id="markdown-editor"></textarea>
+    <input type="submit" class="btn btn-primary"/>
+    <input asp-for="BlogId" hidden="true" value="Create Post"/>
+</form>
 
 @section Scripts
 {

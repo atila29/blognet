@@ -1,7 +1,21 @@
 ﻿@model dtu.blognet.Application.Web.Models.BlogViewModels.BlogViewModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = $"Blog - {Model.Title}";
 }
 
 <h2>@Model.Title</h2>
+<br/>
+<div id="md-description"></div>
+
+
+
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ=" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('md-description').innerHTML =
+            marked('@Model.Description');
+    </script>
+}

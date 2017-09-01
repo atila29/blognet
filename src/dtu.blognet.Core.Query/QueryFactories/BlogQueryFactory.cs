@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blogs;
+using dtu.blognet.Core.Query.Queries.Blog;
 using dtu.blognet.Core.Query.QueryHandlers.Blog;
 
-namespace dtu.blognet.Core.Query.QueryFactories.Blog
+namespace dtu.blognet.Core.Query.QueryFactories
 {
     /// <summary>
     ///     Factory for building Blog queries.

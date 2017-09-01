@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using dtu.blognet.Core.Query.Queries.Blogs;
+using dtu.blognet.Core.Query.Queries.Blog;
 
 namespace dtu.blognet.Core.Query.QueryHandlers.Blog
 {

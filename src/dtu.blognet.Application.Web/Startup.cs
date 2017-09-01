@@ -4,9 +4,9 @@ using dtu.blognet.Application.Web.ConfigurationObjects;
 using dtu.blognet.Application.Web.Services;
 using dtu.blognet.Application.Web.Services.AutomapperProfiles;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
+using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
-using dtu.blognet.Core.Query.QueryFactories.Blog;
 using dtu.blognet.Infrastructure.DataAccess;
 using dtu.blognet.Services.Mapping;
 using Microsoft.AspNetCore.Builder;
@@ -46,7 +46,7 @@ namespace dtu.blognet.Application.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
             
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<Account, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
             // Add JWT configuration object.
@@ -60,14 +60,16 @@ namespace dtu.blognet.Application.Web
             });
             services.AddSingleton<IMapper>(mapperConfig.CreateMapper());
 
-            // Queries
+            // Queries.
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
+            services.AddTransient<AccountQueryFactory, AccountQueryFactory>();
 
-            // Factories
+            // Commands.
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();
             services.AddTransient<PostCommandHandlerFactory, PostCommandHandlerFactory>();
             services.AddTransient<CommentCommandHandlerFactory, CommentCommandHandlerFactory>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

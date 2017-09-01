@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -13,9 +14,13 @@ using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace dtu.blognet.Application.Web.Controllers
@@ -69,36 +74,85 @@ namespace dtu.blognet.Application.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(Credentials credentials)
         {
-            if (!ModelState.IsValid) return Error("Unexpected error");
-            
-            var user = new Account { UserName = credentials.Email, Email = credentials.Email };
-            var result = await _userManager.CreateAsync(user, credentials.Password);
-            
-            if (!result.Succeeded) return Errors(result);
-            
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return new JsonResult(  new Dictionary<string, object>
+            await Register(ModelState, credentials);
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ApiRegister([FromBody] Credentials credentials)
+        {
+            try
             {
-                { "access_token", GetAccessToken(credentials.Email) },
-                { "id_token", GetIdToken(user) }
-            });
+                var account = await Register(ModelState, credentials);
+                return new JsonResult(  new Dictionary<string, object>
+                {
+                    { "access_token", GetAccessToken(credentials.Email) },
+                    { "id_token", GetIdToken(account) }
+                });
+            }
+            catch (ArgumentException)
+            {
+                //TODO: add logger!!
+                return Error("Unexpected error");
+            }
+            catch (AuthenticationException)
+            {
+                return new JsonResult("Unable to sign in") {StatusCode = 401};
+            }
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> ApiLogin(Credentials credentials)
+        {   
+            try
+            {
+                var account = await Login(ModelState, credentials);
+                return new JsonResult(  new Dictionary<string, object>
+                {
+                    { "access_token", GetAccessToken(credentials.Email) },
+                    { "id_token", GetIdToken(account) }
+                });
+            }
+            catch (ArgumentException)
+            {
+                //TODO: add logger!!
+                return Error("Unexpected error");
+            }
+            catch (AuthenticationException)
+            {
+                return new JsonResult("Unable to sign in") {StatusCode = 401};
+            }
         }
         
         [HttpPost]
         public async Task<IActionResult> Login(Credentials credentials)
         {
-            if (!ModelState.IsValid) return Error("Unexpected error");
+            await Login(ModelState, credentials);
+            return RedirectToAction("Profile");
+        }
+
+        private async Task<Account> Register(ModelStateDictionary modelState, Credentials credentials)
+        {
+            if (!ModelState.IsValid) throw new ArgumentException();
+            
+            var user = new Account { UserName = credentials.Email, Email = credentials.Email };
+            var result = await _userManager.CreateAsync(user, credentials.Password);
+            
+            if (!result.Succeeded) throw new AuthenticationException();
+            
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            return user;
+        }
+
+
+        private async Task<Account> Login(ModelStateDictionary modelState, Credentials credentials)
+        {
+            if (!ModelState.IsValid) throw new ArgumentException();
             
             var result = await _signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
+            if (!result.Succeeded) throw new AuthenticationException();
             
-            if (!result.Succeeded) return new JsonResult("Unable to sign in") {StatusCode = 401};
-            
-            var user = await _userManager.FindByEmailAsync(credentials.Email);
-            return new JsonResult(  new Dictionary<string, object>
-            {
-                { "access_token", GetAccessToken(credentials.Email) },
-                { "id_token", GetIdToken(user) }
-            });
+            return await _userManager.FindByEmailAsync(credentials.Email);
         }
         
         

@@ -5,11 +5,18 @@
 }
 
 <h2>@Model.Title</h2>
+@if (Model.IsOwner)
+{
+    <br/>
+    <a asp-controller="Post" asp-action="Create" asp-route-blogId="@Model.Id" class="btn btn-primary">Add a post</a>
+}
 <br/>
 <div id="md-description"></div>
-
-
-
+<br/>
+@foreach (var post in Model.Posts)
+{
+    <p><a asp-controller="Post" asp-action="View" asp-route-id="@post.Id">@post.Title</a></p>
+}
 
 @section Scripts
 {

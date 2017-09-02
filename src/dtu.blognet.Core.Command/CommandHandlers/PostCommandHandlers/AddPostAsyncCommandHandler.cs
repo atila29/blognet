@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Dynamic;
 using System.Threading.Tasks;
 using AutoMapper;
 using dtu.blognet.Core.Command.Commands.PostCommands;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Infrastructure.DataAccess;
+using Microsoft.AspNetCore.Identity;
 
 namespace dtu.blognet.Core.Command.CommandHandlers.PostCommandHandlers
 {
@@ -35,6 +37,8 @@ namespace dtu.blognet.Core.Command.CommandHandlers.PostCommandHandlers
                     await _dbContext.SaveChangesAsync();
                     transaction.Commit();
                     response.Success = true;
+                    response.Response = new ExpandoObject();
+                    response.Response.Id = post.Id;
                 }
                 catch (Exception e)
                 {

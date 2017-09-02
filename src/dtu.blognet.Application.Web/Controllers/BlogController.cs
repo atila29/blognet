@@ -68,6 +68,7 @@ namespace dtu.blognet.Application.Web.Controllers
         {
             var blog = blogQueryFactory.Build(query).Get();
             var viewModel = _mapper.Map<BlogViewModel>(blog);
+            viewModel.IsOwner = blog.OwnerId == _userManager.GetUserId(User);
             return View(viewModel);
         }
         

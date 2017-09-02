@@ -7,8 +7,8 @@
 <form asp-action="Create">
     <input asp-for="Title"/>
     <textarea asp-for="Content" id="markdown-editor"></textarea>
-    <input type="submit" class="btn btn-primary"/>
-    <input asp-for="BlogId" hidden="true" value="Create Post"/>
+    <input type="submit" class="btn btn-primary" value="Create Post"/>
+    <input asp-for="BlogId" hidden="true"/>
 </form>
 
 @section Scripts

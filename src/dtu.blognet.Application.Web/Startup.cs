@@ -64,6 +64,7 @@ namespace dtu.blognet.Application.Web
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
             services.AddTransient<AccountQueryFactory, AccountQueryFactory>();
+            services.AddTransient<PostQueryFactory, PostQueryFactory>();
 
             // Commands.
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();

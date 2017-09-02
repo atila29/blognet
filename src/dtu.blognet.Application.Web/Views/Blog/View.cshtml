@@ -5,10 +5,13 @@
 }
 
 <h2>@Model.Title</h2>
+@if (Model.IsOwner)
+{
+    <br/>
+    <a asp-controller="Post" asp-action="Create" asp-route-blogId="@Model.Id" class="btn btn-primary">Add a post</a>
+}
 <br/>
 <div id="md-description"></div>
-
-
 
 
 @section Scripts

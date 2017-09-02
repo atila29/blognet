@@ -10,6 +10,5 @@ namespace dtu.blognet.Core.Entities
         public string Content { get; set; }
         public virtual Blog Blog { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        // TODO: add account. owner
     }
 }

@@ -6,7 +6,7 @@ namespace dtu.blognet.Core.Command.InputModels.CommentInputModels
 {
     public class CommentInputModel
     {
-        //TODO: Add owner
+        public int CreaterId { get; set; }
         public int PostId { get; set; }
         public string Content { get; set; }
     }

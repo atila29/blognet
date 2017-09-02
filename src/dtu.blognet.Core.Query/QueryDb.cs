@@ -23,5 +23,7 @@ namespace dtu.blognet.Core.Query
         }
 
         public IQueryable<Blog> Blogs => _dbContext.Blogs.AsQueryable();
+        public IQueryable<Account> Users => _dbContext.Users.AsQueryable();
+        public IQueryable<Post> Posts => _dbContext.Posts.AsQueryable();
     }
 }

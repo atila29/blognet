@@ -1,0 +1,13 @@
+﻿@model dtu.blognet.Application.Web.Models.AccountViewModels.AccountViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<span>@Model.UserName</span>
+
+<a asp-controller="Blog" asp-action="Create" class="btn btn-primary">create blog</a>
+<br/>
+@foreach (var blog in Model.OwnedBlogs)
+{
+    <h3><a asp-controller="Blog" asp-action="View" asp-route-id="@blog.Id">@blog.Title</a></h3>
+}

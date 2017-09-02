@@ -1,16 +1,24 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
+using dtu.blognet.Application.Web.ConfigurationObjects;
+using dtu.blognet.Application.Web.Services;
+using dtu.blognet.Application.Web.Services.AutomapperProfiles;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
+using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query;
 using dtu.blognet.Core.Query.QueryFactories;
-using dtu.blognet.Core.Query.QueryFactories.Blog;
 using dtu.blognet.Infrastructure.DataAccess;
 using dtu.blognet.Services.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace dtu.blognet.Application.Web
 {
@@ -38,15 +46,30 @@ namespace dtu.blognet.Application.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("dtu.blognet.Infrastructure.DataAccess")));
             
+            services.AddIdentity<Account, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            // Add JWT configuration object.
+            services.Configure<JwtConfiguration>(Configuration.GetSection("JWTSettings"));
+            
             // Add automapper.
-            services.AddTransient<IMapper>(provider => MappingConfiguraition.GetMappingConfig().CreateMapper());
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfiles(MappingConfiguraition.GetMappingTypes());
+                cfg.AddProfile(new ViewModelProfile());
+            });
+            services.AddSingleton<IMapper>(mapperConfig.CreateMapper());
 
+            // Queries.
             services.AddTransient<QueryDb, QueryDb>();
             services.AddTransient<BlogQueryFactory, BlogQueryFactory>();
+            services.AddTransient<AccountQueryFactory, AccountQueryFactory>();
 
+            // Commands.
             services.AddTransient<BlogCommandHandlerFactory, BlogCommandHandlerFactory>();
             services.AddTransient<PostCommandHandlerFactory, PostCommandHandlerFactory>();
             services.AddTransient<CommentCommandHandlerFactory, CommentCommandHandlerFactory>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +91,23 @@ namespace dtu.blognet.Application.Web
 
             app.UseStaticFiles();
 
+            app.UseIdentity();
+
+            var tokenParameters = new TokenValidationConfiguration(app.ApplicationServices.GetService<IOptions<JwtConfiguration>>()).GetTokenValidationParameters();
+            
+            
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                TokenValidationParameters = tokenParameters
+            });
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                LoginPath = new PathString("/Account/Login"),
+                AutomaticAuthenticate = false,
+                AutomaticChallenge = false
+            });
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

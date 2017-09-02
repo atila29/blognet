@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blogs;
+using dtu.blognet.Core.Query.Queries.Blog;
 using dtu.blognet.Core.Query.QueryHandlers.Blog;
 
-namespace dtu.blognet.Core.Query.QueryFactories.Blog
+namespace dtu.blognet.Core.Query.QueryFactories
 {
     /// <summary>
     ///     Factory for building Blog queries.
@@ -32,6 +31,11 @@ namespace dtu.blognet.Core.Query.QueryFactories.Blog
         public IQueryHandler<AllBlogsQueryAsync, IAsyncEnumerable<Entities.Blog>> Build(AllBlogsQueryAsync queryAsync)
         {
             return new AllBlogsQueryAsyncHandler(_queryDb);
+        }
+
+        public IQueryHandler<BlogFromIdQuery, Entities.Blog> Build(BlogFromIdQuery query)
+        {
+            return new BlogFromIdQueryHandler(_queryDb, query);
         }
     }
 }

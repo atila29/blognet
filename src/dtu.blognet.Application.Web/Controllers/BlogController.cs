@@ -1,28 +1,47 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using dtu.blognet.Application.Web.Models.BlogViewModels;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Command.InputModels.BlogInputModels;
+using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blogs;
+using dtu.blognet.Core.Query.Queries.Blog;
 using dtu.blognet.Core.Query.QueryFactories;
-using dtu.blognet.Core.Query.QueryFactories.Blog;
 using dtu.blognet.Infrastructure.DataAccess.Migrations;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dtu.blognet.Application.Web.Controllers
 {
     public class BlogController : Controller
     {
-        public BlogController()
+        private readonly IMapper _mapper;
+        private readonly UserManager<Account> _userManager;
+
+        public BlogController(IMapper mapper, UserManager<Account> userManager)
         {
-            
+            _mapper = mapper;
+            _userManager = userManager;
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateBlog([FromServices] BlogCommandHandlerFactory blogCommandHandlerFactory, BlogInputModel model)
+        public async Task<IActionResult> Create([FromServices] BlogCommandHandlerFactory blogCommandHandlerFactory, BlogInputModel model)
         {
             var command = new AddBlogAsyncCommand {Model = model};
+            command.Model.OwnerID = _userManager.GetUserId(User);
+            var handler = blogCommandHandlerFactory.Build(command);
+            var response = await handler.Execute();
+            return RedirectToAction("Profile", "Account");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromServices] BlogCommandHandlerFactory blogCommandHandlerFactory, int id)
+        {
+            var command = new DeleteBlogAsyncCommand { Id = id };
             var handler = blogCommandHandlerFactory.Build(command);
             var response = await handler.Execute();
             return Ok();
@@ -33,7 +52,23 @@ namespace dtu.blognet.Application.Web.Controllers
         {
             var query = new AllBlogsQueryAsync();
             var blogs = await blogFactory.Build(query).Get().ToList();
-            return View(blogs);
+            var viewModel = _mapper.Map<BlogIndexViewModel>(blogs);
+            return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult View([FromServices] BlogQueryFactory blogQueryFactory, BlogFromIdQuery query)
+        {
+            var blog = blogQueryFactory.Build(query).Get();
+            var viewModel = _mapper.Map<BlogViewModel>(blog);
+            return View(viewModel);
         }
         
     }

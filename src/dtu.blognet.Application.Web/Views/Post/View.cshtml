@@ -13,12 +13,39 @@
 <br/>
 <div id="md-description"></div>
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Add Comment</h3>
+    </div>
+    <div class="panel-body">
+        <textarea id="add-comment-ta" class="form-control" style="min-width: 100%"></textarea>
+        <br/>
+        <a class="btn btn-primary" onclick="addComment()">Add comment</a>
+    </div>
+</div>
 
 @section Scripts
 {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         document.getElementById('md-description').innerHTML =
             marked('@Model.Content');
+    </script>
+    
+    <script>
+        function addComment() {
+            console.log('test');
+            axios.post('/api/comment', {
+                    content: document.getElementById('add-comment-ta').value,
+                    postId: @Model.Id
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
     </script>
 }

@@ -2,7 +2,7 @@
 
 namespace dtu.blognet.Core.Query.Queries.Blog
 {
-    public class AllBlogsQueryAsync : IQuery<IAsyncEnumerable<Entities.Blog>>
+    public class AllBlogsQueryAsync : IQuery<IAsyncEnumerable<Entities.Blog>>, IQuery<IAsyncEnumerable<Entities.Comment>>
     {
         
     }

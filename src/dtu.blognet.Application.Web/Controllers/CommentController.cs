@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Command.Commands.PostCommands;
 using dtu.blognet.Core.Command.InputModels.PostInputModels;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using dtu.blognet.Core.Command.InputModels.CommentInputModels;
 using dtu.blognet.Core.Command.Commands.CommentCommands;
 using dtu.blognet.Core.Entities;
+using dtu.blognet.Core.Query.Queries.Comment;
+using dtu.blognet.Core.Query.QueryFactories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
@@ -30,6 +33,14 @@ namespace dtu.blognet.Application.Web.Controllers
             var handler = commentCommandHandlerFactory.Build(command);
             var response = await handler.Execute();
             return Ok();
+        }
+
+        [Route("api/[controller]")]
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromServices] CommentQueryFactory commentQueryFactory, AllCommentsQueryAsync query)
+        {
+            var comments = await commentQueryFactory.Build(query).Get().ToList();
+            return new JsonResult(comments);
         }
         
     }

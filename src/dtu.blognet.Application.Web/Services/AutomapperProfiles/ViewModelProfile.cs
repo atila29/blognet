@@ -15,7 +15,8 @@ namespace dtu.blognet.Application.Web.Services.AutomapperProfiles
             CreateMap<Blog, BlogViewModel>();
             CreateMap<IEnumerable<Blog>, BlogIndexViewModel>()
                 .ForMember(model => model.Blogs, opt => opt.MapFrom(blogs => blogs));
-            CreateMap<Post, PostViewModel>();
+            CreateMap<Post, PostViewModel>()
+                .ForMember(model => model.Content, opt => opt.MapFrom(post => post.Content.Replace("\r\n", "\\n")));
             CreateMap<Account, AccountViewModel>();
         }
         

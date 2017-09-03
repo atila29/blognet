@@ -5,11 +5,6 @@
 }
 
 <h2>@Model.Title</h2>
-@*@if (Model.IsOwner)*@
-@*{*@
-@*    <br/>*@
-@*    <a asp-controller="Post" asp-action="Create" asp-route-blogId="@Model.Id" class="btn btn-primary">Add a post</a>*@
-@*}*@
 <br />
 <div id="md-description"></div>
 
@@ -66,26 +61,27 @@
                 this.getComments();
             },
             methods: {
-                getComments: function () {
+                getComments: function() {
                     axios.get(Url)
                         .then(response => { this.results = response.data })
                 },
-                addComment: function () {
+                addComment: function() {
                     self = this;
-                    axios.post('/api/comment', {
-                    content: document.getElementById('add-comment-ta').value,
-                    postId: @Model.Id
-                })
-                .then(function (response) {
-                    console.log(response);
-                    self.getComments();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                    axios.post('/api/comment',
+                            {
+                                content: document.getElementById('add-comment-ta').value,
+                                postId: @Model.Id
+                            })
+                        .then(function(response) {
+                            console.log(response);
+                            self.getComments();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
                 }
             }
-        })
+        });
 
     </script>
 }

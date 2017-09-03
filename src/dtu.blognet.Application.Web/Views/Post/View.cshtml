@@ -5,47 +5,83 @@
 }
 
 <h2>@Model.Title</h2>
-@*@if (Model.IsOwner)*@
-@*{*@
-@*    <br/>*@
-@*    <a asp-controller="Post" asp-action="Create" asp-route-blogId="@Model.Id" class="btn btn-primary">Add a post</a>*@
-@*}*@
-<br/>
+<br />
 <div id="md-description"></div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Add Comment</h3>
+
+<hr>
+
+<h3>Comments</h3>
+
+<div id="app">
+
+    <div class="list-group">
+        <a class="list-group-item" v-for="result in results">
+            <h4 class="list-group-item-heading">{{result.content}}</h4>
+            <p class="list-group-item-text">{{result.content}}</p>
+        </a>
+
     </div>
-    <div class="panel-body">
-        <textarea id="add-comment-ta" class="form-control" style="min-width: 100%"></textarea>
-        <br/>
-        <a class="btn btn-primary" onclick="addComment()">Add comment</a>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add Comment</h3>
+        </div>
+        <div class="panel-body" id="app">
+            <textarea id="add-comment-ta" class="form-control" style="min-width: 100%"></textarea>
+            <br />
+            <a class="btn btn-primary" v-on:click="addComment">Add comment</a>
+        </div>
     </div>
+
 </div>
 
 @section Scripts
-{
+    {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         document.getElementById('md-description').innerHTML =
             marked('@Model.Content');
-    </script>
-    
-    <script>
-        function addComment() {
-            console.log('test');
-            axios.post('/api/comment', {
-                    content: document.getElementById('add-comment-ta').value,
-                    postId: @Model.Id
-                })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
+
+
+
+        const Url = "http://localhost:64071/api/comment?postid=" + @Model.Id;
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                results: []
+
+            },
+            mounted() {
+                this.getComments();
+            },
+            methods: {
+                getComments: function() {
+                    axios.get(Url)
+                        .then(response => { this.results = response.data })
+                },
+                addComment: function() {
+                    self = this;
+                    axios.post('/api/comment',
+                            {
+                                content: document.getElementById('add-comment-ta').value,
+                                postId: @Model.Id
+                            })
+                        .then(function(response) {
+                            console.log(response);
+                            self.getComments();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                }
+            }
+        });
+
     </script>
 }

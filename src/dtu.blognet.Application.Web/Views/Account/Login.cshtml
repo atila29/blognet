@@ -1,18 +1,33 @@
 ﻿@model dtu.blognet.Application.Web.Models.AccountViewModels.Credentials
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Sign in";
 }
 
-<h2>@ViewData["Title"]</h2>
-<form asp-action="Login">
-    <label asp-for="Email"></label>
-    <input asp-for="Email"/>
-    <br/>
-    <label asp-for="Password"></label>
-    <input asp-for="Password"/>
-    <br/>
-    <input type="submit" value="Login"/>
-</form>
+<div class="container theme-showcase" role="main" style="max-width:500px;">
 
+    <div class="jumbotron">
 
+        <h2 class="form-signin-heading" style="margin-top:0px;">@ViewData["Title"]</h2>
+
+        <form asp-action="Login">
+
+            <div class="form-group form-group-lg">
+                <input type="email" class="form-control" style="max-width:100%;" placeholder="Email address" aria-describedby="sizing-addon1" asp-for="Email">
+            </div>
+
+            <div class="form-group form-group-lg">
+                <input type="password" class="form-control" style="max-width:100%;" placeholder="Password" aria-describedby="sizing-addon1" asp-for="Password">
+            </div>
+
+            <input class="btn btn-lg btn-success btn-block" style="max-width:100%;" type="submit" value="Login" />
+        </form>
+
+        <br />
+        <br />
+
+        <a class="btn btn-lg btn-primary btn-block" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+
+    </div>
+
+</div>

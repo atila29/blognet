@@ -3,11 +3,50 @@
     ViewData["Title"] = "Profile";
 }
 
-<span>@Model.UserName</span>
+<div class="container" role="main" style="max-width:500px;">
+    <div class="jumbotron">
 
-<a asp-controller="Blog" asp-action="Create" class="btn btn-primary">create blog</a>
-<br/>
-@foreach (var blog in Model.OwnedBlogs)
-{
-    <h3><a asp-controller="Blog" asp-action="View" asp-route-id="@blog.Id">@blog.Title</a></h3>
-}
+        <img class="center-block" style="width:40%;" src="~/images/Profile.svg" data-holder-rendered="true">
+
+        <h2 class="text-center">@Model.UserName</h2>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <a class="btn btn-success btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
+                    <i class="glyphicon glyphicon-cog"></i>
+                </a>
+            </div>
+
+            <div class="col-sm-6">
+                <a class="btn btn-danger btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>My blogs</h2>
+    </div>
+    <div class="col-md-4">
+            <a class="btn btn-primary center-block" asp-controller="Blog" asp-action="Create">create blog</a>
+    </div>
+</div>
+
+<div class="list-group">
+
+    @foreach (var blog in Model.OwnedBlogs)
+    {
+        <a class="list-group-item" asp-controller="Blog" asp-action="View" asp-route-id="@blog.Id">
+            <h4 class="list-group-item-heading">@blog.Title</h4>
+            <p class="list-group-item-text">@blog.Description</p>
+        </a>
+    }
+
+</div>
+
+

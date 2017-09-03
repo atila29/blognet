@@ -2,7 +2,17 @@
 @{
     ViewData["Title"] = "Blogs";
 }
-@foreach (var blog in Model.Blogs)
-{
-    <h3><a asp-action="View" asp-route-id="@blog.Id">@blog.Title</a></h3>
-}
+
+<div class="list-group">
+
+    @foreach (var blog in Model.Blogs)
+    {
+        <a class="list-group-item" asp-action="View" asp-route-id="@blog.Id">
+            <h4 class="list-group-item-heading">@blog.Title</h4>
+            <p class="list-group-item-text">Tags: Sport, Music, Fun</p>
+            <br/>
+            <p class="list-group-item-text">@blog.Description</p>
+        </a>
+    }
+
+</div>

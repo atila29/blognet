@@ -2,13 +2,30 @@
 @{
     ViewData["Title"] = "Create Post";
 }
-<label asp-for="Title"></label>
-<br />
+
 <form asp-action="Create">
-    <input asp-for="Title"/>
+
+    <h3 class="form-signin-heading" style="margin-top:0px;">Title</h3>
+    <div class="form-group form-group-lg">
+        <input type="text" class="form-control" style="max-width:100%;" aria-describedby="sizing-addon1" asp-for="Title">
+    </div>
+
+    <br />
+
+    <h3 class="form-signin-heading" style="margin-top:0px;">Tags</h3>
+    <div class="form-group form-group-lg">
+        <input type="text" class="form-control" style="max-width:100%;" aria-describedby="sizing-addon1">
+    </div>
+
+    <br />
+
+    <h3 class="form-signin-heading" style="margin-top:0px;">Content</h3>
+
     <textarea asp-for="Content" id="markdown-editor"></textarea>
-    <input type="submit" class="btn btn-primary" value="Create Post"/>
-    <input asp-for="BlogId" hidden="true"/>
+    <input asp-for="BlogId" hidden="true" />
+
+    <input class="btn btn-lg btn-primary btn-block center-block" style="max-width:40%;" type="submit" value="Create post" />
+
 </form>
 
 @section Scripts

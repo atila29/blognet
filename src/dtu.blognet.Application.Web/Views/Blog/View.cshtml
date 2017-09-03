@@ -4,22 +4,65 @@
     ViewBag.Title = $"Blog - {Model.Title}";
 }
 
-<h2>@Model.Title</h2>
-@if (Model.IsOwner)
-{
-    <br/>
-    <a asp-controller="Post" asp-action="Create" asp-route-blogId="@Model.Id" class="btn btn-primary">Add a post</a>
-}
-<br/>
-<div id="md-description"></div>
-<br/>
-@foreach (var post in Model.Posts)
-{
-    <p><a asp-controller="Post" asp-action="View" asp-route-id="@post.Id">@post.Title</a></p>
-}
+
+
+<div class="jumbotron">
+
+    <h2 class="text-center">@Model.Title</h2>
+    <p class="text-center">Tags: Sport, Music, Fun</p>
+    <br />
+    <p>@Model.Description</p>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <a class="btn btn-success btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
+                <i class="glyphicon glyphicon-cog"></i>
+            </a>
+        </div>
+
+        <div class="col-sm-6">
+            <a class="btn btn-danger btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Posts</h2>
+    </div>
+    <div class="col-md-4">
+
+        @if (Model.IsOwner)
+        {
+            <a class="btn btn-primary center-block" asp-controller="Post" asp-action="Create" asp-route-blogId="@Model.Id">New post</a>
+        }
+
+    </div>
+</div>
+
+
+<div class="list-group">
+
+    @foreach (var post in Model.Posts)
+    {
+
+        <a class="list-group-item" asp-controller="Post" asp-action="View" asp-route-id="@post.Id">
+            <h4 class="list-group-item-heading">@post.Title</h4>
+            <p class="list-group-item-text">Tags: Sport, Music, Fun</p>
+            <br />
+            <div id="md-description"></div>
+        </a>
+
+
+    }
+
+</div>
 
 @section Scripts
-{
+    {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ=" crossorigin="anonymous"></script>
     <script>
         document.getElementById('md-description').innerHTML =

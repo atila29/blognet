@@ -32,8 +32,13 @@
     {
         <a class="list-group-item" asp-action="View" asp-route-id="@blog.Id">
             <h4 class="list-group-item-heading">@blog.Title</h4>
-            <p class="list-group-item-text">Tags: Sport, Music, Fun</p>
-            <br />
+            <p class="list-group-item-text">Tags: 
+                @foreach (var tag in blog.Tags)
+                  {
+                      <span>#@tag </span>    
+                  }
+                </p>
+            <br/>
             <p class="list-group-item-text">@blog.Description</p>
         </a>
     }

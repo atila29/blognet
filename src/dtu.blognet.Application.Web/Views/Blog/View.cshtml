@@ -14,7 +14,7 @@
             </div>
             <div class="col-xs-1">
                 <a v-if="btnShow" v-on:click="subscripe" class="btn btn-primary">Subscripe</a>
-                <a v-else class="btn btn-danger">UnSubscripe</a>
+                <a v-else v-on:click="unSubscripe" class="btn btn-danger">UnSubscripe</a>
             </div>
         </div>
     
@@ -101,6 +101,20 @@
                 subscripe: function() {
                     var self = this;
                     axios.post('/api/subscription',
+                            {
+                                blogId: @Model.Id
+                            })
+                        .then(function(response) {
+                            console.log(response);
+                            self.isSubscriped();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                },
+                unSubscripe: function() {
+                    var self = this;
+                    axios.delete('/api/subscription',
                             {
                                 blogId: @Model.Id
                             })

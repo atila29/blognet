@@ -28,7 +28,17 @@ namespace dtu.blognet.Application.Web.Controllers
         [Authorize]
         [Route("api/[controller]")]
         [HttpPost]
-        public async Task<IActionResult> Supscribe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, [FromBody] AddSubscriptionCommand command)
+        public async Task<IActionResult> Subscripe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, [FromBody] AddSubscriptionCommand command)
+        {
+            command.AccountId = _userManager.GetUserId(User);
+            var handler = commandHandlerFactory.Build(command);
+            var response = await handler.Execute();
+            return Ok();
+        }
+        
+        [Route("api/[controller]")]
+        [HttpDelete]
+        public async Task<IActionResult> UnSubscripe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, [FromBody] DeleteSubscriptionCommand command)
         {
             command.AccountId = _userManager.GetUserId(User);
             var handler = commandHandlerFactory.Build(command);

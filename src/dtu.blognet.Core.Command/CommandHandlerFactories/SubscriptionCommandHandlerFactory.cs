@@ -21,5 +21,11 @@ namespace dtu.blognet.Core.Command.CommandHandlerFactories
         {
             return new AddSubscriptionCommandHandler(_context, command);
         }
+
+        public ICommandHandler<DeleteSubscriptionCommand, Task<CommandResponse>> Build(
+            DeleteSubscriptionCommand command)
+        {
+            return new DeleteSubscriptionCommandHandler(command, _context);
+        }
     }
 }

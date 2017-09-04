@@ -26,5 +26,6 @@ namespace dtu.blognet.Infrastructure.DataAccess
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<BlogTag> BlogTags { get; set; }
         public virtual DbSet<Subscription> Subscriptions { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
     }
 }

@@ -19,7 +19,10 @@ namespace dtu.blognet.Core.Query.QueryHandlers.BlogQueryHandlers
         
         public Blog Get()
         {
-            return _queryDb.Blogs.Include(blog => blog.Posts).Single(blog => blog.Id == _query.Id);
+            return _queryDb.Blogs
+                .Include(blog => blog.Posts)
+                .Include(blog => blog.Tags).ThenInclude(tag => tag.Tag)
+                .Single(blog => blog.Id == _query.Id);
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using dtu.blognet.Core.Command.InputModels.BlogInputModels;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace dtu.blognet.Core.Command.Commands.BlogCommands
 {
     public class AddBlogAsyncCommand : ICommand<Task<CommandResponse>>
     {
-        public BlogInputModel Model { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string OwnerId { get; set; }
+        public string Tags { get; set; }
     }
 }

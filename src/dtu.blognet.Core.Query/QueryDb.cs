@@ -26,5 +26,6 @@ namespace dtu.blognet.Core.Query
         public IQueryable<Account> Users => _dbContext.Users.AsQueryable();
         public IQueryable<Post> Posts => _dbContext.Posts.AsQueryable();
         public IQueryable<Comment> Comments => _dbContext.Comments.AsQueryable();
+        public IQueryable<Subscription> Subscriptions => _dbContext.Subscriptions.AsQueryable();
     }
 }

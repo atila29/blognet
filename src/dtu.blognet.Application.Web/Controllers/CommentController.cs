@@ -40,7 +40,7 @@ namespace dtu.blognet.Application.Web.Controllers
         public async Task<IActionResult> GetAll([FromServices] CommentQueryFactory commentQueryFactory, AllCommentsQueryAsync query)
         {
             var comments = await commentQueryFactory.Build(query).Get().ToList();
-            return new JsonResult(comments);
+            return Json(comments);
         }
         
     }

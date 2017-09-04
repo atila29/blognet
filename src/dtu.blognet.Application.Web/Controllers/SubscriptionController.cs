@@ -5,6 +5,8 @@ using dtu.blognet.Core.Command.Commands.CommentCommands;
 using dtu.blognet.Core.Command.Commands.SubscriptionCommands;
 using dtu.blognet.Core.Command.InputModels.CommentInputModels;
 using dtu.blognet.Core.Entities;
+using dtu.blognet.Core.Query.Queries.SubscriptionQueries;
+using dtu.blognet.Core.Query.QueryFactories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -37,9 +39,10 @@ namespace dtu.blognet.Application.Web.Controllers
         [Authorize]
         [Route("api/[controller]")]
         [HttpGet]
-        public async Task<IActionResult> Info([FromServices])
+        public async Task<IActionResult> Info([FromServices] SubscriptionQueryFactory queryFactory, SubscriptionQuery query)
         {
-            return Ok();
+            query.AccountId = _userManager.GetUserId(User);
+            return Json(queryFactory.Build(query).Get());
         }
         
         

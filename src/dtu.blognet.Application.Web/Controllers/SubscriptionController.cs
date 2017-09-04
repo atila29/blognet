@@ -36,9 +36,10 @@ namespace dtu.blognet.Application.Web.Controllers
             return Ok();
         }
         
+        [Authorize]
         [Route("api/[controller]")]
         [HttpDelete]
-        public async Task<IActionResult> UnSubscripe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, [FromBody] DeleteSubscriptionCommand command)
+        public async Task<IActionResult> UnSubscripe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, DeleteSubscriptionCommand command)
         {
             command.AccountId = _userManager.GetUserId(User);
             var handler = commandHandlerFactory.Build(command);

@@ -114,10 +114,7 @@
                 },
                 unSubscripe: function() {
                     var self = this;
-                    axios.delete('/api/subscription',
-                            {
-                                blogId: @Model.Id
-                            })
+                    axios.delete(`/api/subscription?blogId=${@Model.Id}`)
                         .then(function(response) {
                             console.log(response);
                             self.isSubscriped();

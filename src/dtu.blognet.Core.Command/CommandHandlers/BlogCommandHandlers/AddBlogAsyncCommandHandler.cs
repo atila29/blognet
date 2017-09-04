@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Entities;
@@ -31,8 +33,26 @@ namespace dtu.blognet.Core.Command.CommandHandlers.BlogCommandHandlers
             {
                 try
                 {
-                    var blog = _mapper.Map<Blog>(_command.Model);
+                    var blog = _mapper.Map<Blog>(_command);
+                    blog.Tags = new List<BlogTag>();
+                    
                     await _dbContext.Blogs.AddAsync(blog);
+                    var tags = _command.Tags.Split(' ');
+                    foreach (var tag in tags)
+                    {
+                        if (!_dbContext.Tags.Any(t => t.Name == tag))
+                        {
+                            var newTag = new Tag(tag);
+                            _dbContext.Tags.Add(newTag);
+                            blog.Tags.Add(new BlogTag{Tag = newTag, BlogId = blog.Id});
+                        }
+                        else
+                        {
+                            blog.Tags.Add(new BlogTag{TagId = _dbContext.Tags.Single(t => t.Name == tag).Id, BlogId = blog.Id});
+                        }
+                            
+                        
+                    }
                     await _dbContext.SaveChangesAsync();
                     transaction.Commit();
                     response.Success = true;

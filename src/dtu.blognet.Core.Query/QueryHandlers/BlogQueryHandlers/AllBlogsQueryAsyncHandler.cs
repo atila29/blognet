@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query.Queries.BlogQueries;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Extensions.Internal;
 
 namespace dtu.blognet.Core.Query.QueryHandlers.BlogQueryHandlers
@@ -16,7 +17,7 @@ namespace dtu.blognet.Core.Query.QueryHandlers.BlogQueryHandlers
         
         public IAsyncEnumerable<Blog> Get()
         {
-            return _queryDb.Blogs.AsAsyncEnumerable();
+            return _queryDb.Blogs.Include(blog => blog.Tags).ThenInclude(tag => tag.Tag).AsAsyncEnumerable();
         }
     }
 }

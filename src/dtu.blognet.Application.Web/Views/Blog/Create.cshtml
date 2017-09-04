@@ -1,4 +1,4 @@
-﻿@model dtu.blognet.Application.Web.Models.BlogViewModels.BlogViewModel
+﻿@model dtu.blognet.Application.Web.Models.BlogViewModels.BlogCreateViewModel
 @{
     ViewData["Title"] = "Create Blog";
 }
@@ -14,7 +14,7 @@
 
     <h3 class="form-signin-heading" style="margin-top:0px;">Tags</h3>
     <div class="form-group form-group-lg">
-        <input type="text" class="form-control" style="max-width:100%;" aria-describedby="sizing-addon1">
+        <input asp-for="Tags" type="text" class="form-control" style="max-width:100%;" aria-describedby="sizing-addon1">
     </div>
 
     <br/>

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using dtu.blognet.Core.Command.InputModels.BlogInputModels;
+using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Entities;
 
 namespace dtu.blognet.Services.Mapping.Profiles
@@ -8,7 +8,8 @@ namespace dtu.blognet.Services.Mapping.Profiles
     {
         public BlogMappingProfile()
         {
-            CreateMap<BlogInputModel, Blog>();
+            CreateMap<AddBlogAsyncCommand, Blog>()
+                .ForMember(blog => blog.Tags, opt => opt.Ignore());
         }
     }
 }

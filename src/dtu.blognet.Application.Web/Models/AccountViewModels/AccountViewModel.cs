@@ -6,7 +6,7 @@ namespace dtu.blognet.Application.Web.Models.AccountViewModels
 {
     public class AccountViewModel
     {
-        public ICollection<BlogViewModel> OwnedBlogs { get; set; }
+        public ICollection<BlogCreateViewModel> OwnedBlogs { get; set; }
         public string UserName { get; set; }
         
         

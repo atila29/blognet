@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using dtu.blognet.Core.Command.InputModels.CommentInputModels;
 using dtu.blognet.Core.Command.Commands.CommentCommands;
 using dtu.blognet.Core.Entities;
-using dtu.blognet.Core.Query.Queries.Comment;
+using dtu.blognet.Core.Query.Queries.CommentQueries;
 using dtu.blognet.Core.Query.QueryFactories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

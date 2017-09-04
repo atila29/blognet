@@ -7,7 +7,7 @@ using dtu.blognet.Core.Command.Commands.BlogCommands;
 using dtu.blognet.Core.Command.InputModels.BlogInputModels;
 using dtu.blognet.Core.Entities;
 using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blog;
+using dtu.blognet.Core.Query.Queries.BlogQueries;
 using dtu.blognet.Core.Query.QueryFactories;
 using dtu.blognet.Infrastructure.DataAccess.Migrations;
 using Microsoft.AspNetCore.Authorization;

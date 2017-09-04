@@ -33,5 +33,15 @@ namespace dtu.blognet.Application.Web.Controllers
             var response = await handler.Execute();
             return Ok();
         }
+        
+        [Authorize]
+        [Route("api/[controller]")]
+        [HttpGet]
+        public async Task<IActionResult> Info([FromServices])
+        {
+            return Ok();
+        }
+        
+        
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using dtu.blognet.Core.Query.Queries.Blog;
-using dtu.blognet.Core.Query.QueryHandlers.Blog;
+using dtu.blognet.Core.Query.Queries.BlogQueries;
+using dtu.blognet.Core.Query.QueryHandlers.BlogQueryHandlers;
 
 namespace dtu.blognet.Core.Query.QueryFactories
 {

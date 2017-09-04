@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using dtu.blognet.Core.Query.Queries;
-using dtu.blognet.Core.Query.Queries.Blog;
+using dtu.blognet.Core.Entities;
+using dtu.blognet.Core.Query.Queries.BlogQueries;
 using Microsoft.EntityFrameworkCore.Extensions.Internal;
 
-namespace dtu.blognet.Core.Query.QueryHandlers.Blog
+namespace dtu.blognet.Core.Query.QueryHandlers.BlogQueryHandlers
 {
-    public class AllBlogsQueryAsyncHandler : IQueryHandler<AllBlogsQueryAsync, IAsyncEnumerable<Entities.Blog>>
+    public class AllBlogsQueryAsyncHandler : IQueryHandler<AllBlogsQueryAsync, IAsyncEnumerable<Blog>>
     {
         private readonly QueryDb _queryDb;
 
@@ -14,7 +14,7 @@ namespace dtu.blognet.Core.Query.QueryHandlers.Blog
             _queryDb = queryDb;
         }
         
-        public IAsyncEnumerable<Entities.Blog> Get()
+        public IAsyncEnumerable<Blog> Get()
         {
             return _queryDb.Blogs.AsAsyncEnumerable();
         }

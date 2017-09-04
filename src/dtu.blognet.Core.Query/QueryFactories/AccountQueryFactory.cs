@@ -1,5 +1,5 @@
-﻿using dtu.blognet.Core.Query.Queries.Account;
-using dtu.blognet.Core.Query.QueryHandlers.Account;
+﻿using dtu.blognet.Core.Query.Queries.AccountQueries;
+using dtu.blognet.Core.Query.QueryHandlers.AccountQueryHandlers;
 
 namespace dtu.blognet.Core.Query.QueryFactories
 {

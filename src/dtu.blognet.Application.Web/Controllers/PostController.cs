@@ -4,7 +4,7 @@ using dtu.blognet.Application.Web.Models.PostViewModels;
 using dtu.blognet.Core.Command.CommandHandlerFactories;
 using dtu.blognet.Core.Command.Commands.PostCommands;
 using dtu.blognet.Core.Command.InputModels.PostInputModels;
-using dtu.blognet.Core.Query.Queries.Post;
+using dtu.blognet.Core.Query.Queries.PostQueries;
 using dtu.blognet.Core.Query.QueryFactories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

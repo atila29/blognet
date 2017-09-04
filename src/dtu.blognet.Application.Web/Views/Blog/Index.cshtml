@@ -3,6 +3,29 @@
     ViewData["Title"] = "Blogs";
 }
 
+<div class="row">
+    <div class="col-md-8">
+        <div class="btn-group" role="group" aria-label="Large button group" style="width:100%;">
+            <button type="button" class="btn btn-default" style="width:33%;">All</button>
+            <button type="button" class="btn btn-default" style="width:33%;">Subscribed</button>
+            <button type="button" class="btn btn-default" style="width:33%;">Newly updated</button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <select class="js-example-basic-multiple" multiple id="e1" style="width:100%;">
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+        </select>
+    </div>
+</div>
+
+<br />
+
 <div class="list-group">
 
     @foreach (var blog in Model.Blogs)
@@ -10,9 +33,23 @@
         <a class="list-group-item" asp-action="View" asp-route-id="@blog.Id">
             <h4 class="list-group-item-heading">@blog.Title</h4>
             <p class="list-group-item-text">Tags: Sport, Music, Fun</p>
-            <br/>
+            <br />
             <p class="list-group-item-text">@blog.Description</p>
         </a>
     }
 
 </div>
+
+@section Scripts
+    {
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $("#e1").select2({
+            placeholder: "Search by tags"
+        });
+    </script>
+
+}
+

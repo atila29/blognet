@@ -7,6 +7,7 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/select2.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
@@ -14,6 +15,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css asp-append-version="true" />
     </environment>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 </head>
@@ -27,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Blognet</a>
+                <a asp-area="" asp-controller="Blog" asp-action="Index" class="navbar-brand">Blognet</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

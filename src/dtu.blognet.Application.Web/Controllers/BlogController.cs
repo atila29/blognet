@@ -71,7 +71,13 @@ namespace dtu.blognet.Application.Web.Controllers
             viewModel.IsOwner = blog.OwnerId == _userManager.GetUserId(User);
             return View(viewModel);
         }
-        
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Subscribe()
+        {
+            return Ok();
+        }
         
     }
 }

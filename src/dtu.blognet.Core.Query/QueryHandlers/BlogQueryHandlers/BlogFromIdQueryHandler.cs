@@ -1,10 +1,11 @@
 ﻿using System.Linq;
-using dtu.blognet.Core.Query.Queries.Blog;
+using dtu.blognet.Core.Entities;
+using dtu.blognet.Core.Query.Queries.BlogQueries;
 using Microsoft.EntityFrameworkCore;
 
-namespace dtu.blognet.Core.Query.QueryHandlers.Blog
+namespace dtu.blognet.Core.Query.QueryHandlers.BlogQueryHandlers
 {
-    public class BlogFromIdQueryHandler : IQueryHandler<BlogFromIdQuery, Entities.Blog>
+    public class BlogFromIdQueryHandler : IQueryHandler<BlogFromIdQuery, Blog>
     {
         private readonly QueryDb _queryDb;
         private readonly BlogFromIdQuery _query;
@@ -16,7 +17,7 @@ namespace dtu.blognet.Core.Query.QueryHandlers.Blog
         }
         
         
-        public Entities.Blog Get()
+        public Blog Get()
         {
             return _queryDb.Blogs.Include(blog => blog.Posts).Single(blog => blog.Id == _query.Id);
         }

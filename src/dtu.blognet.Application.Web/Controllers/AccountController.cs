@@ -8,7 +8,7 @@ using AutoMapper;
 using dtu.blognet.Application.Web.ConfigurationObjects;
 using dtu.blognet.Application.Web.Models.AccountViewModels;
 using dtu.blognet.Core.Entities;
-using dtu.blognet.Core.Query.Queries.Account;
+using dtu.blognet.Core.Query.Queries.AccountQueries;
 using dtu.blognet.Core.Query.QueryFactories;
 using JWT;
 using JWT.Algorithms;

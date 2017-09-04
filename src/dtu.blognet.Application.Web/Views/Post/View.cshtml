@@ -42,14 +42,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         document.getElementById('md-description').innerHTML =
             marked('@Model.Content');
 
 
 
-        const Url = "http://localhost:64071/api/comment?postid=" + @Model.Id;
+        const Url = `/api/comment?postid=${@Model.Id}`;
 
         const vm = new Vue({
             el: '#app',
@@ -66,7 +65,7 @@
                         .then(response => { this.results = response.data })
                 },
                 addComment: function() {
-                    self = this;
+                    var self = this;
                     axios.post('/api/comment',
                             {
                                 content: document.getElementById('add-comment-ta').value,

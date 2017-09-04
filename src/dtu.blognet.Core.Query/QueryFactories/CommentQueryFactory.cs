@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using dtu.blognet.Core.Entities;
-using dtu.blognet.Core.Query.Queries.Comment;
-using dtu.blognet.Core.Query.QueryHandlers.Comment;
+using dtu.blognet.Core.Query.Queries.CommentQueries;
+using dtu.blognet.Core.Query.QueryHandlers.CommentQueryHandlers;
 
 namespace dtu.blognet.Core.Query.QueryFactories
 {

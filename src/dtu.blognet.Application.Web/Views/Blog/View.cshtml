@@ -5,29 +5,40 @@
 }
 
 
+<div id="app">
+    <div class="jumbotron">
 
-<div class="jumbotron">
+        <div class="row">
+            <div class="col-xs-11">
+                <h2 class="text-center">@Model.Title</h2>
+            </div>
+            <div class="col-xs-1">
+                <a v-if="btnShow" v-on:click="subscripe" class="btn btn-primary">Subscribe</a>
+                <a v-else v-on:click="unSubscripe" class="btn btn-danger">Unsubscribe</a>
+            </div>
+        </div>
+    
+        <p class="text-center">Tags: Sport, Music, Fun</p>
+        <br />
+        <div id="md-description"></div>
 
-    <h2 class="text-center">@Model.Title</h2>
-    <p class="text-center">Tags: Sport, Music, Fun</p>
-    <br />
-    <div id="md-description"></div>
+        <div class="row">
+            <div class="col-sm-6">
+                <a class="btn btn-success btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
+                    <i class="glyphicon glyphicon-cog"></i>
+                </a>
+            </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <a class="btn btn-success btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
-                <i class="glyphicon glyphicon-cog"></i>
-            </a>
+            <div class="col-sm-6">
+                <a class="btn btn-danger btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
         </div>
 
-        <div class="col-sm-6">
-            <a class="btn btn-danger btn-lg center-block" style="width:50%;" asp-controller="Blog" asp-action="Create">
-                <i class="glyphicon glyphicon-trash"></i>
-            </a>
-        </div>
     </div>
-
 </div>
+
 
 <div class="row">
     <div class="col-md-8">
@@ -64,8 +75,55 @@
 @section Scripts
     {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script>
         document.getElementById('md-description').innerHTML =
             marked('@Model.Description');
+
+        const url = `/api/subscription/${@Model.Id}`;
+        const app = new Vue({
+            el: '#app',
+            data: {
+                btnShow : true
+
+            },
+            mounted() {
+                this.isSubscriped();
+            },
+            methods: {
+                isSubscriped: function() {
+                    axios.get(url)
+                        .then(response => {
+                            this.btnShow = !response.data.isSubscriped;
+                        });
+                },
+                subscripe: function() {
+                    var self = this;
+                    axios.post('/api/subscription',
+                            {
+                                blogId: @Model.Id
+                            })
+                        .then(function(response) {
+                            console.log(response);
+                            self.isSubscriped();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                },
+                unSubscripe: function() {
+                    var self = this;
+                    axios.delete(`/api/subscription?blogId=${@Model.Id}`)
+                        .then(function(response) {
+                            console.log(response);
+                            self.isSubscriped();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                }
+            }
+        });
     </script>
 }

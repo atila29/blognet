@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using dtu.blognet.Core.Query.Queries.Comment;
+using dtu.blognet.Core.Entities;
+using dtu.blognet.Core.Query.Queries.CommentQueries;
 using Microsoft.EntityFrameworkCore.Extensions.Internal;
 
-namespace dtu.blognet.Core.Query.QueryHandlers.Comment
+namespace dtu.blognet.Core.Query.QueryHandlers.CommentQueryHandlers
 {
-    public class AllCommentsQueryAsyncHandler : IQueryHandler<AllCommentsQueryAsync, IAsyncEnumerable<Entities.Comment>>
+    public class AllCommentsQueryAsyncHandler : IQueryHandler<AllCommentsQueryAsync, IAsyncEnumerable<Comment>>
     {
         private readonly QueryDb _queryDb;
         private readonly AllCommentsQueryAsync _query;
@@ -16,7 +17,7 @@ namespace dtu.blognet.Core.Query.QueryHandlers.Comment
             _query = query;
         }
 
-        public IAsyncEnumerable<Entities.Comment> Get()
+        public IAsyncEnumerable<Comment> Get()
         {
             return _queryDb.Comments.Where(comment => comment.PostId == _query.PostId).AsAsyncEnumerable();
         }

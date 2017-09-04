@@ -12,5 +12,6 @@ namespace dtu.blognet.Core.Entities
         public string OwnerId { get; set; }
         public virtual Account Owner { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

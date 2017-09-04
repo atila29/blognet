@@ -28,7 +28,7 @@ namespace dtu.blognet.Application.Web.Controllers
         [Authorize]
         [Route("api/[controller]")]
         [HttpPost]
-        public async Task<IActionResult> Supscribe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, AddSubscriptionCommand command)
+        public async Task<IActionResult> Supscribe([FromServices] SubscriptionCommandHandlerFactory commandHandlerFactory, [FromBody] AddSubscriptionCommand command)
         {
             command.AccountId = _userManager.GetUserId(User);
             var handler = commandHandlerFactory.Build(command);
@@ -37,12 +37,16 @@ namespace dtu.blognet.Application.Web.Controllers
         }
         
         [Authorize]
-        [Route("api/[controller]")]
+        [Route("api/[controller]/{blogId}")]
         [HttpGet]
-        public async Task<IActionResult> Info([FromServices] SubscriptionQueryFactory queryFactory, SubscriptionQuery query)
+        public IActionResult Info([FromServices] SubscriptionQueryFactory queryFactory, int blogId)
         {
-            query.AccountId = _userManager.GetUserId(User);
-            return Json(queryFactory.Build(query).Get());
+            var query = new SubscriptionQuery
+            {
+                BlogId = blogId,
+                AccountId = _userManager.GetUserId(User)
+            };
+            return Json(new {isSubscriped = queryFactory.Build(query).Get()});
         }
         
         

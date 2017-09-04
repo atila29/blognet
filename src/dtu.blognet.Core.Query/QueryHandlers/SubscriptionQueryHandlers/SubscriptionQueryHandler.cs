@@ -4,7 +4,7 @@ using dtu.blognet.Core.Query.Queries.SubscriptionQueries;
 
 namespace dtu.blognet.Core.Query.QueryHandlers.SubscriptionQueryHandlers
 {
-    public class SubscriptionQueryHandler : IQueryHandler<SubscriptionQuery, Subscription>
+    public class SubscriptionQueryHandler : IQueryHandler<SubscriptionQuery, bool>
     {
         private readonly SubscriptionQuery _query;
         private readonly QueryDb _queryDb;
@@ -15,9 +15,9 @@ namespace dtu.blognet.Core.Query.QueryHandlers.SubscriptionQueryHandlers
             _queryDb = queryDb;
         }
 
-        public Subscription Get()
+        public bool Get()
         {
-            return _queryDb.Subscriptions.Single(subscription =>
+            return _queryDb.Subscriptions.Any(subscription =>
                 subscription.AccountId == _query.AccountId && subscription.BlogId == _query.BlogId);
         }
     }

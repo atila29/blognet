@@ -14,7 +14,7 @@ namespace dtu.blognet.Core.Query.QueryFactories
         }
 
 
-        public IQueryHandler<SubscriptionQuery, Subscription> Build(SubscriptionQuery query)
+        public IQueryHandler<SubscriptionQuery, bool> Build(SubscriptionQuery query)
         {
             return new SubscriptionQueryHandler(query, _queryDb);
         }

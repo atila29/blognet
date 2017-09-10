@@ -78,6 +78,7 @@ namespace dtu.blognet.Application.Web.Controllers
             return RedirectToAction("Profile");
         }
 
+        [Route("api/account/register")]
         [HttpPost]
         public async Task<IActionResult> ApiRegister([FromBody] Credentials credentials)
         {
@@ -101,6 +102,7 @@ namespace dtu.blognet.Application.Web.Controllers
             }
         }
         
+        [Route("api/account/login")]
         [HttpPost]
         public async Task<IActionResult> ApiLogin(Credentials credentials)
         {   
